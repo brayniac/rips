@@ -127,6 +127,7 @@ impl StackInterfaceThread {
 
     fn update_arp(&mut self, ip: Ipv4Addr, mac: MacAddr) {
         if self.arp_table.insert(ip, mac) {
+            debug!("Update Arp with {} {}", ip, mac);
             self.data.tx.lock().unwrap().inc();
         }
     }
