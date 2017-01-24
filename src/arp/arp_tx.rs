@@ -20,6 +20,7 @@ impl<T: EthernetTx> ArpRequestTx<T> {
     /// Ethernet request
     pub fn send(&mut self, sender_ip: Ipv4Addr, target_ip: Ipv4Addr) -> TxResult {
         let builder = ArpBuilder::new_request(self.ethernet.src(), sender_ip, target_ip);
+        debug!("Sending ARP");
         self.ethernet.send(1, ArpPacket::minimum_packet_size(), builder)
     }
 }
