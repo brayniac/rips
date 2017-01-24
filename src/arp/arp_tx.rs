@@ -39,6 +39,7 @@ impl<T: EthernetTx> ArpReplyTx<T> {
                 target_mac: MacAddr,
                 target_ip: Ipv4Addr)
                 -> TxResult {
+        debug!("ArpReplyTx send()");
         let builder = ArpBuilder::new_reply(self.ethernet.src(), sender_ip, target_mac, target_ip);
         self.ethernet.send(1, ArpPacket::minimum_packet_size(), builder)
     }
